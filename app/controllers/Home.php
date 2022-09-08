@@ -15,7 +15,7 @@ class Home extends Controller
                 return $this->view("dashboard", ['result' => $result]);
             }
         } else
-            header("Location: http://localhost/test/login");
+            header("Location: /login");
     }
     public function edit()
     {
@@ -36,7 +36,7 @@ class Home extends Controller
                     if ($new_password == $confirm_password) {
                         $this->model("User")->edit($result['id'], $name, $new_password);
                         $_SESSION['user'] = $conn->getUser($_SESSION['user']['id'])[0];
-                        header("Location: http://localhost/test/home");
+                        header("Location:/home");
                     } else {
                         $error = 'Password and confirm password not match';
                     }
@@ -46,7 +46,7 @@ class Home extends Controller
             }
         }
         if (isset($_POST['cancel'])) {
-            header("Location: http://localhost/test/home");
+            header("Location: /home");
         }
         return $this->view("edit", ['result' => $result, 'error' => $error]);
     }
@@ -57,15 +57,15 @@ class Home extends Controller
         $result = $conn->getUser($id);
         $result = $result[0];
         if (isset($_POST['cancel'])) {
-            header("Location: http://localhost/test/home");
+            header("Location: /home");
         }
         return $this->view("show", ['result' => $result]);
     }
     public function logout()
     {
-        setcookie('user', '', time() - 3600, '/test');
+        setcookie('user', '', time() - 3600, '/');
         unset($_SESSION['user']);
         unset($_SESSION['role']);
-        header("Location: http://localhost/test");
+        header("Location:/");
     }
 }

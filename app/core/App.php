@@ -9,19 +9,18 @@ class App
     function __construct()
     {
         $arr = $this->UrlProcess();
-        unset($arr[0]);
-        if (!isset($arr[1])) {
-            $arr[1] = $this->controller;
+        if (!isset($arr[0])) {
+            $arr[0] = $this->controller;
         }
-        if (file_exists("./app/controllers/" . $arr[1] . ".php")) {
-            $this->controller = $arr[1];
-            unset($arr[1]);
+        if (file_exists("./app/controllers/" . $arr[0] . ".php")) {
+            $this->controller = $arr[0];
+            unset($arr[0]);
         }
         require_once "./app/controllers/" . $this->controller . ".php";
         $this->controller = new $this->controller;
-        if (isset($arr[2])) {
-            if (method_exists($this->controller, $arr[2])) {
-                $this->action = $arr[2];
+        if (isset($arr[1])) {
+            if (method_exists($this->controller, $arr[1])) {
+                $this->action = $arr[1];
             }
             unset($arr[1]);
         }

@@ -19,7 +19,7 @@ class Register extends Controller
                         if ($result) {
                             $_SESSION['user'] = $result[0];
                             $_SESSION['role'] = 'user';
-                            header("Location: http://localhost/test/home");
+                            header("Location: /home");
                         } else {
                             $error = 'Email already exists';
                         }
