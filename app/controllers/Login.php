@@ -17,13 +17,13 @@ class Login extends Controller
                     $_SESSION['user'] = $result[0];
                     $_SESSION['role'] = 'admin';
                     if ($remember == 'check') {
-                        setcookie($this->cookieName, 'email=' . $result[0]['email'] . '&password=' . $result[0]['password'], time() + $this->cookieTime, '/test');
+                        setcookie($this->cookieName, 'email=' . $result[0]['email'] . '&password=' . $result[0]['password'], time() + $this->cookieTime, '/');
                     }
                 } else {
                     $_SESSION['user'] = $result[0];
                     $_SESSION['role'] = 're$result';
                     if ($remember == 'check') {
-                        setcookie($this->cookieName, 'email=' . $result[0]['email'] . '&password=' . $result[0]['password'], time() + $this->cookieTime, '/test');
+                        setcookie($this->cookieName, 'email=' . $result[0]['email'] . '&password=' . $result[0]['password'], time() + $this->cookieTime, '/');
                     }
                 }
                 header("Location: http://localhost/test/home");
