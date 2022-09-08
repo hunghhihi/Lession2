@@ -1,4 +1,5 @@
 <?php
+
 class Login extends Controller
 {
     private $cookieName = "user";
@@ -56,5 +57,12 @@ class Login extends Controller
                 return require_once "./app/views/login.php";
             }
         }
+    }
+    public static function logout()
+    {
+        setcookie('user', '', time() - 3600, '/');
+        unset($_SESSION['user']);
+        unset($_SESSION['role']);
+        header("Location:/");
     }
 }

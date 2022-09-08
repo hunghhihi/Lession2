@@ -13,6 +13,21 @@ class User extends Database
         $result = $this->select($sql);
         return $result;
     }
+    public function paginate($page, $limit)
+    {
+        $start = ($page - 1) * $limit;
+        $sql = "SELECT * FROM users LIMIT $start, $limit";
+        $result = $this->select($sql);
+        return $result;
+    }
+    public function getPage($limit)
+    {
+        $sql = "SELECT * FROM users";
+        $result = $this->select($sql);
+        $total = count($result);
+        $page = ceil($total / $limit);
+        return $page;
+    }
     public function getUser($id)
     {
         $sql = "SELECT * FROM users WHERE id = '$id'";

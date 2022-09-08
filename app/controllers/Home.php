@@ -3,11 +3,18 @@ class Home extends Controller
 {
     public function index()
     {
+        if (isset($_GET['logout'])) {
+            require_once './app/controllers/Login.php';
+            Login::logout();
+        }
         if (isset($_SESSION['user'])) {
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
                 $conn = $this->model("User");
-                $result = $conn->getAllUser();
-                return $this->view("admin/dashboard", ['result' => $result]);
+                $start = $_GET['page'] ?? 1;
+                $limit = 2;
+                $result = $conn->paginate($start, $limit);
+                $page = $conn->getPage($limit);
+                return $this->view("admin/dashboard", ['result' => $result, 'page' => $page]);
             } else {
                 $conn = $this->model("User");
                 $result = $conn->getUser($_SESSION['user']['id']);
@@ -60,12 +67,5 @@ class Home extends Controller
             header("Location: /home");
         }
         return $this->view("show", ['result' => $result]);
-    }
-    public function logout()
-    {
-        setcookie('user', '', time() - 3600, '/');
-        unset($_SESSION['user']);
-        unset($_SESSION['role']);
-        header("Location:/");
     }
 }

@@ -14,7 +14,9 @@
 
     <div class="container">
         <div class="text-center pt-10">
-            <a href="home/logout" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Logout</a>
+            <form action="">
+                <button type="submit" name="logout">Logout</button>
+            </form>
         </div>
         <table class="table">
             <thead>
@@ -34,16 +36,20 @@
                         <td><?= $user['email'] ?></td>
                         <td><?= $user['role'] ?></td>
                         <td>
-                            <a href="home/edit/?id=<?= $user['id'] ?>" class="btn btn-primary">Edit</a>
-                            <a href="home/show/?id=<?= $user['id'] ?>" class="btn btn-primary">Show</a>
-                            <a href="dashboard/delete/<?= $user['id'] ?>" class="btn btn-primary">Copy</a>
-                            <a href="dashboard/delete/<?= $user['id'] ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo "/home/edit/?id=" . $user['id']; ?>" class="btn btn-primary">Edit</a>
+                            <a href="<?php echo "/home/show/?id=" . $user['id']; ?>" class="btn btn-primary">show</a>
+                            <a href="<?php echo "/home/copy/?id=" . $user['id']; ?>" class="btn btn-primary">copy</a>
+                            <a href="<?php echo "/home/delete/?id=" . $user['id']; ?>" class="btn btn-danger">delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
+        <div>
+            <?php for ($i = 1; $i <= $data['page']; $i++) : ?>
+                <a href="<?php echo "/home/?page=$i"; ?>" class="btn btn-primary"><?php echo $i; ?></a>
+            <?php endfor; ?>
+        </div>
 
 </body>
 

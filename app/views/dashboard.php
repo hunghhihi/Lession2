@@ -12,9 +12,9 @@
 
 <body>
     <div class="container">
-        <div class="text-center pt-10">
-            <a href="home/logout" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Logout</a>
-        </div>
+        <form action="">
+            <button type="submit" name="logout">Logout</button>
+        </form>
         <table class="table">
             <thead>
                 <tr>
@@ -28,7 +28,7 @@
                     <th scope="row"><?= $data['result']['username'] ?></th>
                     <th scope="row"><?= $data['result']['email'] ?></th>
                     <td>
-                        <a href="home/edit/?id=<?= $data['result']['id'] ?>" class="btn btn-primary">Edit</a>
+                        <a href="<?php echo "/home/edit/?id=" . $data['result']['id']; ?>" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             </tbody>
