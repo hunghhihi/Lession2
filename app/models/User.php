@@ -3,6 +3,7 @@ class User extends Database
 {
     public function checkUser($email, $password)
     {
+        $password = md5($password);
         $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
         $result = $this->select($sql);
         return $result;
@@ -36,6 +37,7 @@ class User extends Database
     }
     public function edit($id, $name, $password)
     {
+        $password = md5($password);
         $sql = "UPDATE users SET username = '$name', password = '$password' WHERE id = '$id'";
         $result = $this->update($sql);
         return $result;
@@ -43,6 +45,7 @@ class User extends Database
 
     public function register($name, $email, $password)
     {
+        $password =  md5($password);
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = $this->select($sql);
         if ($result) {

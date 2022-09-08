@@ -39,7 +39,7 @@ class Home extends Controller
                 $old_password = $_POST['oldPassword'];
                 $new_password = $_POST['newPassword'];
                 $confirm_password = $_POST['confirmPassword'];
-                if ($old_password == $result['password']) {
+                if (md5($old_password) == ($result['password'])) {
                     if ($new_password == $confirm_password) {
                         $this->model("User")->edit($result['id'], $name, $new_password);
                         $_SESSION['user'] = $conn->getUser($_SESSION['user']['id'])[0];

@@ -12,5 +12,5 @@ $db->conn->query("CREATE TABLE IF NOT EXISTS users(
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )");
 // insert user
-$db->conn->query("INSERT INTO users(username, password, email, role) VALUES('admin', 'admin', 'admin@admin.com', 'admin')");
-$db->conn->query("INSERT INTO users(username, password, email, role) VALUES('hung', 'hung', 'hung@hung.com', 'user')");
+$db->conn->query("INSERT INTO users(username, password, email, role) VALUES('admin', md5('admin'), 'admin@admin.com', 'admin')");
+$db->conn->query("INSERT INTO users(username, password, email) VALUES('hung',md5('123456'), 'hung@hung.com')");

@@ -30,6 +30,7 @@ class Login extends Controller
                 header("Location: /home");
             } else {
                 $error = "Email or password is incorrect";
+                return $this->view("login", ['error' => $error]);
             }
         }
         if (isset($_SESSION['user'])) {
